@@ -1,0 +1,403 @@
+@namespace
+class SpriteKind:
+    Goal = SpriteKind.create()
+
+def on_overlap_tile(sprite, location):
+    game.over(False)
+scene.on_overlap_tile(SpriteKind.player,
+    assets.tile("""
+        myTile0
+    """),
+    on_overlap_tile)
+
+def on_a_pressed():
+    if mySprite.is_hitting_tile(CollisionDirection.BOTTOM):
+        mySprite.vy = -180
+controller.A.on_event(ControllerButtonEvent.PRESSED, on_a_pressed)
+
+def on_left_pressed():
+    animation.run_image_animation(mySprite,
+        [img("""
+                . . . . f f f f f f . . . . . . 
+                        . . . f 2 f e e e e f f . . . . 
+                        . . f 2 2 2 f e e e e f f . . . 
+                        . . f e e e e f f e e e f . . . 
+                        . f e 2 2 2 2 e e f f f f . . . 
+                        . f 2 e f f f f 2 2 2 e f . . . 
+                        . f f f e e e f f f f f f f . . 
+                        . f e e 4 4 f b e 4 4 e f f . . 
+                        . . f e d d f 1 4 d 4 e e f . . 
+                        . . . f d d d d 4 e e e f . . . 
+                        . . . f e 4 4 4 e e f f . . . . 
+                        . . . f 2 2 2 e d d 4 . . . . . 
+                        . . . f 2 2 2 e d d e . . . . . 
+                        . . . f 5 5 4 f e e f . . . . . 
+                        . . . . f f f f f f . . . . . . 
+                        . . . . . . f f f . . . . . . .
+            """),
+            img("""
+                . . . . . . . . . . . . . . . . 
+                        . . . . f f f f f f . . . . . . 
+                        . . . f 2 f e e e e f f . . . . 
+                        . . f 2 2 2 f e e e e f f . . . 
+                        . . f e e e e f f e e e f . . . 
+                        . f e 2 2 2 2 e e f f f f . . . 
+                        . f 2 e f f f f 2 2 2 e f . . . 
+                        . f f f e e e f f f f f f f . . 
+                        . f e e 4 4 f b e 4 4 e f f . . 
+                        . . f e d d f 1 4 d 4 e e f . . 
+                        . . . f d d d e e e e e f . . . 
+                        . . . f e 4 e d d 4 f . . . . . 
+                        . . . f 2 2 e d d e f . . . . . 
+                        . . f f 5 5 f e e f f f . . . . 
+                        . . f f f f f f f f f f . . . . 
+                        . . . f f f . . . f f . . . . .
+            """),
+            img("""
+                . . . . f f f f f f . . . . . . 
+                        . . . f 2 f e e e e f f . . . . 
+                        . . f 2 2 2 f e e e e f f . . . 
+                        . . f e e e e f f e e e f . . . 
+                        . f e 2 2 2 2 e e f f f f . . . 
+                        . f 2 e f f f f 2 2 2 e f . . . 
+                        . f f f e e e f f f f f f f . . 
+                        . f e e 4 4 f b e 4 4 e f f . . 
+                        . . f e d d f 1 4 d 4 e e f . . 
+                        . . . f d d d d 4 e e e f . . . 
+                        . . . f e 4 4 4 e e f f . . . . 
+                        . . . f 2 2 2 e d d 4 . . . . . 
+                        . . . f 2 2 2 e d d e . . . . . 
+                        . . . f 5 5 4 f e e f . . . . . 
+                        . . . . f f f f f f . . . . . . 
+                        . . . . . . f f f . . . . . . .
+            """),
+            img("""
+                . . . . . . . . . . . . . . . . 
+                        . . . . f f f f f f . . . . . . 
+                        . . . f 2 f e e e e f f . . . . 
+                        . . f 2 2 2 f e e e e f f . . . 
+                        . . f e e e e f f e e e f . . . 
+                        . f e 2 2 2 2 e e f f f f . . . 
+                        . f 2 e f f f f 2 2 2 e f . . . 
+                        . f f f e e e f f f f f f f . . 
+                        . f e e 4 4 f b e 4 4 e f f . . 
+                        . . f e d d f 1 4 d 4 e e f . . 
+                        . . . f d d d d 4 e e e f . . . 
+                        . . . f e 4 4 4 e d d 4 . . . . 
+                        . . . f 2 2 2 2 e d d e . . . . 
+                        . . f f 5 5 4 4 f e e f . . . . 
+                        . . f f f f f f f f f f . . . . 
+                        . . . f f f . . . f f . . . . .
+            """)],
+        100,
+        True)
+controller.left.on_event(ControllerButtonEvent.PRESSED, on_left_pressed)
+
+def on_right_released():
+    animation.stop_animation(animation.AnimationTypes.ALL, mySprite)
+controller.right.on_event(ControllerButtonEvent.RELEASED, on_right_released)
+
+def on_left_released():
+    animation.stop_animation(animation.AnimationTypes.ALL, mySprite)
+controller.left.on_event(ControllerButtonEvent.RELEASED, on_left_released)
+
+def on_right_pressed():
+    animation.run_image_animation(mySprite,
+        [img("""
+                . . . . . . f f f f f f . . . . 
+                        . . . . f f e e e e f 2 f . . . 
+                        . . . f f e e e e f 2 2 2 f . . 
+                        . . . f e e e f f e e e e f . . 
+                        . . . f f f f e e 2 2 2 2 e f . 
+                        . . . f e 2 2 2 f f f f e 2 f . 
+                        . . f f f f f f f e e e f f f . 
+                        . . f f e 4 4 e b f 4 4 e e f . 
+                        . . f e e 4 d 4 1 f d d e f . . 
+                        . . . f e e e 4 d d d d f . . . 
+                        . . . . f f e e 4 4 4 e f . . . 
+                        . . . . . 4 d d e 2 2 2 f . . . 
+                        . . . . . e d d e 2 2 2 f . . . 
+                        . . . . . f e e f 4 5 5 f . . . 
+                        . . . . . . f f f f f f . . . . 
+                        . . . . . . . f f f . . . . . .
+            """),
+            img("""
+                . . . . . . . . . . . . . . . . 
+                        . . . . . . f f f f f f . . . . 
+                        . . . . f f e e e e f 2 f . . . 
+                        . . . f f e e e e f 2 2 2 f . . 
+                        . . . f e e e f f e e e e f . . 
+                        . . . f f f f e e 2 2 2 2 e f . 
+                        . . . f e 2 2 2 f f f f e 2 f . 
+                        . . f f f f f f f e e e f f f . 
+                        . . f f e 4 4 e b f 4 4 e e f . 
+                        . . f e e 4 d 4 1 f d d e f . . 
+                        . . . f e e e e e d d d f . . . 
+                        . . . . . f 4 d d e 4 e f . . . 
+                        . . . . . f e d d e 2 2 f . . . 
+                        . . . . f f f e e f 5 5 f f . . 
+                        . . . . f f f f f f f f f f . . 
+                        . . . . . f f . . . f f f . . .
+            """),
+            img("""
+                . . . . . . f f f f f f . . . . 
+                        . . . . f f e e e e f 2 f . . . 
+                        . . . f f e e e e f 2 2 2 f . . 
+                        . . . f e e e f f e e e e f . . 
+                        . . . f f f f e e 2 2 2 2 e f . 
+                        . . . f e 2 2 2 f f f f e 2 f . 
+                        . . f f f f f f f e e e f f f . 
+                        . . f f e 4 4 e b f 4 4 e e f . 
+                        . . f e e 4 d 4 1 f d d e f . . 
+                        . . . f e e e 4 d d d d f . . . 
+                        . . . . f f e e 4 4 4 e f . . . 
+                        . . . . . 4 d d e 2 2 2 f . . . 
+                        . . . . . e d d e 2 2 2 f . . . 
+                        . . . . . f e e f 4 5 5 f . . . 
+                        . . . . . . f f f f f f . . . . 
+                        . . . . . . . f f f . . . . . .
+            """),
+            img("""
+                . . . . . . . . . . . . . . . . 
+                        . . . . . . f f f f f f . . . . 
+                        . . . . f f e e e e f 2 f . . . 
+                        . . . f f e e e e f 2 2 2 f . . 
+                        . . . f e e e f f e e e e f . . 
+                        . . . f f f f e e 2 2 2 2 e f . 
+                        . . . f e 2 2 2 f f f f e 2 f . 
+                        . . f f f f f f f e e e f f f . 
+                        . . f f e 4 4 e b f 4 4 e e f . 
+                        . . f e e 4 d 4 1 f d d e f . . 
+                        . . . f e e e 4 d d d d f . . . 
+                        . . . . 4 d d e 4 4 4 e f . . . 
+                        . . . . e d d e 2 2 2 2 f . . . 
+                        . . . . f e e f 4 4 5 5 f f . . 
+                        . . . . f f f f f f f f f f . . 
+                        . . . . . f f . . . f f f . . .
+            """)],
+        100,
+        True)
+controller.right.on_event(ControllerButtonEvent.PRESSED, on_right_pressed)
+
+def on_on_overlap(sprite2, otherSprite):
+    tiles.set_current_tilemap(tilemap("""
+        レベル1
+    """))
+sprites.on_overlap(SpriteKind.player, SpriteKind.Goal, on_on_overlap)
+
+def on_on_overlap2(sprite3, otherSprite2):
+    game.over(False)
+sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_on_overlap2)
+
+mySprite: Sprite = None
+scene.set_background_color(14)
+tiles.set_current_tilemap(tilemap("""
+    レベル1
+"""))
+mySprite = sprites.create(img("""
+        ....eeeeee...............
+            ..eedddddeee.............
+            ..ed18dd81de.............
+            ..edddddddde.............
+            ..eeddbbddee.............
+            88822222222888...........
+            8822fffff22888...........
+            8822f2f2f22288...........
+            8822f2f2f22288...........
+            88222222222288...........
+            88.22222222.88...........
+            88..88.88...88...........
+            ....88.88................
+            ....88.88................
+            ....88.88................
+            ....dd.dd................
+            .........................
+            ................d........
+            .........................
+            .........................
+            .........................
+            .........................
+            .........................
+            .........................
+            .........................
+    """),
+    SpriteKind.player)
+mySprite.set_position(20, 80)
+scene.camera_follow_sprite(mySprite)
+controller.move_sprite(mySprite, 70, 0)
+goal = sprites.create(img("""
+        . . b b b b b b b b b b b b . . 
+            . b e 4 4 4 4 4 4 4 4 4 4 e b . 
+            b e 4 4 4 4 4 4 4 4 4 4 4 4 e b 
+            b e 4 4 4 4 4 4 4 4 4 4 4 4 e b 
+            b e 4 4 4 4 4 4 4 4 4 4 4 4 e b 
+            b e e 4 4 4 4 4 4 4 4 4 4 e e b 
+            b e e e e e e e e e e e e e e b 
+            b e e e e e e e e e e e e e e b 
+            b b b b b b b d d b b b b b b b 
+            c b b b b b b c c b b b b b b c 
+            c c c c c c b c c b c c c c c c 
+            b e e e e e c b b c e e e e e b 
+            b e e e e e e e e e e e e e e b 
+            b c e e e e e e e e e e e e c b 
+            b b b b b b b b b b b b b b b b 
+            . b b . . . . . . . . . . b b .
+    """),
+    SpriteKind.Goal)
+goal.set_position(1464, 106)
+myEnemy = sprites.create(img("""
+        . . . . c c c c c c . . . . . . 
+            . . . c 6 7 7 7 7 6 c . . . . . 
+            . . c 7 7 7 7 7 7 7 7 c . . . . 
+            . c 6 7 7 7 7 7 7 7 7 6 c . . . 
+            . c 7 c 6 6 6 6 c 7 7 7 c . . . 
+            . f 7 6 f 6 6 f 6 7 7 7 f . . . 
+            . f 7 7 7 7 7 7 7 7 7 7 f . . . 
+            . . f 7 7 7 7 6 c 7 7 6 f c . . 
+            . . . f c c c c 7 7 6 f 7 7 c . 
+            . . c 7 2 7 7 7 6 c f 7 7 7 7 c 
+            . c 7 7 2 7 7 c f c 6 7 7 6 c c 
+            c 1 1 1 1 7 6 f c c 6 6 6 c . . 
+            f 1 1 1 1 1 6 6 c 6 6 6 6 f . . 
+            f 6 1 1 1 1 1 6 6 6 6 6 c f . . 
+            . f 6 1 1 1 1 1 1 6 6 6 f . . . 
+            . . c c c c c c c c c f . . . .
+    """),
+    SpriteKind.enemy)
+myEnemy.set_position(650, 106)
+myEnemy.vx = -50
+myEnemy.set_bounce_on_wall(True)
+myEnemy = sprites.create(img("""
+        . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . 4 4 4 4 4 . . . . . . 
+            . . . 4 4 4 5 5 5 d 4 4 4 4 . . 
+            . . 4 d 5 d 5 5 5 d d d 4 4 . . 
+            . . 4 5 5 1 1 1 d d 5 5 5 4 . . 
+            . 4 5 5 5 1 1 1 5 1 1 5 5 4 4 . 
+            . 4 d d 1 1 5 5 5 1 1 5 5 d 4 . 
+            . 4 5 5 1 1 5 1 1 5 5 d d d 4 . 
+            . 2 5 5 5 d 1 1 1 5 1 1 5 5 2 . 
+            . 2 d 5 5 d 1 1 1 5 1 1 5 5 2 . 
+            . . 2 4 d d 5 5 5 5 d d 5 4 . . 
+            . . . 2 2 4 d 5 5 d d 4 4 . . . 
+            . . 2 2 2 2 2 4 4 4 2 2 2 . . . 
+            . . . 2 2 4 4 4 4 4 4 2 2 . . . 
+            . . . . . 2 2 2 2 2 2 . . . . .
+    """),
+    SpriteKind.enemy)
+myEnemy.set_position(454, 24)
+myEnemy.vx = -50
+myEnemy.set_bounce_on_wall(True)
+animation.run_image_animation(myEnemy,
+    [img("""
+            ........................
+                ........................
+                .....44444..............
+                ...444555d4444..........
+                ..4d5d555ddd44..........
+                ..455111dd5554..........
+                .45551115115544.........
+                .4dd115551155d4.........
+                .4551151155ddd4.........
+                .2555d111511552.........
+                .2d55d111511552.........
+                ..24dd5555dd54..........
+                ...224d55dd44...........
+                ..22222444222...........
+                ...2244444422...........
+                .....222222.............
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+        """),
+        img("""
+            ........................
+                ........................
+                .....44444..............
+                ...444555d4444..........
+                ..4d5d555ddd44..........
+                ..455222dd5554..........
+                .45552225225544.........
+                .4dd225552255d4.........
+                .4552252255ddd4.........
+                .2555d222522552.........
+                .2d55d222522552.........
+                ..24dd5555dd54..........
+                ...224d55dd44...........
+                ..22222444222...........
+                ...2244444422...........
+                .....222222.............
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+        """),
+        img("""
+            ........................
+                ........................
+                .....44444..............
+                ...44455544444..........
+                ..445455544444..........
+                ..455222445554..........
+                .45552225225544.........
+                .44422555225544.........
+                .44522522554444.........
+                .25554222522552.........
+                .24554222522552.........
+                ..244455554454..........
+                ...2444554444...........
+                ..22422444222...........
+                ...2444444422...........
+                .....222222.............
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+        """),
+        img("""
+            ....22222222............
+                ...244455444222.........
+                .2255d455544442.........
+                .245555d55545422........
+                .24dd555555d4442........
+                2455d555ddd55544........
+                2455444d55d55544........
+                4444..2455..4444........
+                ..bbbb2442bbbb..........
+                .bdddd2442ddddb.........
+                bddbbb2442bbbddb........
+                bddbbbbbbbbbbddb........
+                bbd11311d1d11dbb........
+                ..bbdd113dd1bb..........
+                ..224444444422..........
+                ...2244444222...........
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+        """)],
+    200,
+    True)
+
+def on_forever():
+    mySprite.vy += 8
+    myEnemy.vy += 8
+forever(on_forever)
